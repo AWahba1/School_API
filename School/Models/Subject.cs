@@ -6,7 +6,7 @@
         public string SubjectName { get; set; }
 
         public ICollection<Grade>? Grades { get; set; }
-        public ICollection<AcademicYearSubject>? AcademicYearSubjects { get; set;}
+        
 
     }
 }

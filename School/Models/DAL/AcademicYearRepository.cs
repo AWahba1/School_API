@@ -12,7 +12,7 @@ namespace School.Models.DAL
 
         public void DeleteAcademicYear(int year)
         {
-            var AcademicYear=_schoolContext.AcademicYear.Find(year);
+            var AcademicYear = _schoolContext.AcademicYear.Find(year);
             if (AcademicYear == null)
                 throw new Exception("Year provided doesn't exist");
             _schoolContext.AcademicYear.Remove(AcademicYear);
@@ -35,15 +35,36 @@ namespace School.Models.DAL
 
             return new AcademicYear
             {
-                AcademicYearId=AcademicYearVM.AcademicYearId
+                AcademicYearId = AcademicYearVM.AcademicYearId,
+                Duration = AcademicYearVM.Duration,
+                StartMonth = AcademicYearVM.StartMonth,
+                EndMonth = AcademicYearVM.EndMonth
             };
         }
         public void InsertAcademicYear(AcademicYearViewModel AcademicYearVM)
-        {   
+        {
             // check if it's valid
             _schoolContext.Add(mapViewModel(AcademicYearVM));
             _schoolContext.SaveChanges();
 
         }
+
+        public void UpdateYear(AcademicYearViewModel AcademicYearVM)
+            {
+            var academicYears = _schoolContext.AcademicYear.Find(AcademicYearVM.AcademicYearId);
+            if (academicYears == null)
+            {
+                throw new Exception("Academic Year doesn't exist");
+
+            }
+
+            academicYears.StartMonth= AcademicYearVM.StartMonth;
+            academicYears.EndMonth= AcademicYearVM.EndMonth;
+            academicYears.Duration= AcademicYearVM.Duration;
+
+
+            _schoolContext.SaveChanges();
+        }
+
     }
 }

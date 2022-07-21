@@ -8,5 +8,6 @@ namespace School.Models.DAL
         void InsertAcademicYear(AcademicYearViewModel AcademicYearVM);
         void DeleteAcademicYear(int year);
         List<AcademicYear> GetAllAcademicYears();
+        void UpdateYear(AcademicYearViewModel academicVM);
     }   
 }

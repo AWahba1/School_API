@@ -36,7 +36,7 @@ namespace School
             .HasOne(g => g.Subject)
             .WithMany(s => s.Grades)
             .HasForeignKey(g => g.SubjectId);
-            modelBuilder.Entity<AcademicYearSubject>().HasKey(sc => new { sc.AcademicYearId, sc.SubjectId });
+            //modelBuilder.Entity<AcademicYearSubject>().HasKey(sc => new { sc.AcademicYearId, sc.SubjectId });
         }
 
         public DbSet<Student> Student { get; set; }

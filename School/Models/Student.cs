@@ -8,6 +8,9 @@
         public String LastName { get; set; }
         public int YearOfBirth { get; set; }
 
+
+
+        //public int? AcademicYearId { get; set; }
         public virtual AcademicYear? AcademicYear { get; set; }
         public ICollection<Grade>? Grades { get; set; }
 

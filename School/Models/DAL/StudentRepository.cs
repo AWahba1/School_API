@@ -24,11 +24,12 @@ namespace School.Models.DAL
         {
 
             return new Student
-            {   
+            {
                 StudentId = studentVM.StudentId,
                 FirstName = studentVM.FirstName,
-                LastName= studentVM.LastName,
-                YearOfBirth =studentVM.YearOfBirth
+                LastName = studentVM.LastName,
+                YearOfBirth = studentVM.YearOfBirth,
+                
             };
         }
 
@@ -71,8 +72,8 @@ namespace School.Models.DAL
 
         IQueryable<Student> IStudentRepository.GetStudentsEnrolledInYear(int year)
         {
-            var grades = _schoolContext.Student.Where(s => s.AcademicYear.AcademicYearId == year);
-            return grades;
+            var students = _schoolContext.Student.Where(s => s.AcademicYear.AcademicYearId == year);
+            return students;
         }
 
 

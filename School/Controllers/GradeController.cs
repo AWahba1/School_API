@@ -26,7 +26,9 @@ namespace School.Controllers
         }
 
         [HttpGet("{studentId,subjectId}")]
-        public IActionResult GetGrade(int studentId, int subjectId)
+        //[HttpGet("{studentId/subjectId}")]\
+        //[HttpGet]
+        public IActionResult GetGrade([FromQuery]int studentId, [FromQuery]int subjectId)
         {
             var grade=GradeRepository.GetSpecificGrade(studentId, subjectId);
             if (grade == null)

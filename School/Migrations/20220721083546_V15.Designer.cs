@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using School;
@@ -11,9 +12,10 @@ using School;
 namespace School.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20220721083546_V15")]
+    partial class V15
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,17 +31,6 @@ namespace School.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("AcademicYearId"));
-
-                    b.Property<int?>("Duration")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("EndMonth")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("StartMonth")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.HasKey("AcademicYearId");
 
@@ -132,15 +123,10 @@ namespace School.Migrations
             modelBuilder.Entity("School.Models.Student", b =>
                 {
                     b.HasOne("School.Models.AcademicYear", "AcademicYear")
-                        .WithMany("Students")
+                        .WithMany()
                         .HasForeignKey("AcademicYearId");
 
                     b.Navigation("AcademicYear");
-                });
-
-            modelBuilder.Entity("School.Models.AcademicYear", b =>
-                {
-                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("School.Models.Student", b =>

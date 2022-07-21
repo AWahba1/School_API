@@ -53,5 +53,23 @@ namespace School.Controllers
             }
             
         }
+
+
+        [HttpPut]
+        public IActionResult UpdateYear(AcademicYearViewModel academicVM)
+        {
+            try
+            {
+                AcademicYearRepository.UpdateYear(academicVM);
+                return Ok(AcademicYearRepository.GetAllAcademicYears());
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+
+
     }
 }
